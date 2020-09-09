@@ -16,40 +16,42 @@ export default function App() {
   return (
     <NavigationContainer>
       <Provider store={store}>
-        <StatusBar/>
+        <StatusBar />
         <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen name="Photo Gallery" component={PhotosMainScreen} options={
-            {
-              headerLeft: () => (
-                <HeaderLogo/>
-              ),
+          <Stack.Screen
+            name="Photo Gallery"
+            component={PhotosMainScreen}
+            options={{
+              headerLeft: () => <HeaderLogo />,
               headerStyle: {
                 height: 100,
-                backgroundColor: 'tomato'
+                backgroundColor: "tomato",
               },
               headerTitleStyle: {
                 marginLeft: 70,
-                textTransform: 'uppercase',
-                fontWeight: 'bold',
-                color: '#8eedce'
-              }
-            }
-          } />
-          <Stack.Screen name="Full Image" component={DetailedPhoto} options={{
-              headerLeft: () => (
-                <HeaderLogo/>
-              ),
+                textTransform: "uppercase",
+                fontWeight: "bold",
+                color: "#8eedce",
+              },
+            }}
+          />
+          <Stack.Screen
+            name="Full Image"
+            component={DetailedPhoto}
+            options={{
+              headerLeft: () => <HeaderLogo />,
               headerStyle: {
                 height: 100,
-                backgroundColor: 'tomato'
+                backgroundColor: "tomato",
               },
               headerTitleStyle: {
                 marginLeft: 70,
-                textTransform: 'uppercase',
-                fontWeight: 'bold',
-                color: '#8eedce'
-              }      
-            }} />
+                textTransform: "uppercase",
+                fontWeight: "bold",
+                color: "#8eedce",
+              },
+            }}
+          />
         </Stack.Navigator>
       </Provider>
     </NavigationContainer>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, Image, StyleSheet, View, ActivityIndicator } from "react-native";
+import { Image, StyleSheet, View, ActivityIndicator } from "react-native";
 
 export const DetailedPhoto = ({ route }) => {
   const { itemUrl } = route.params;
@@ -12,12 +12,12 @@ export const DetailedPhoto = ({ route }) => {
           animating={true}
           size="large"
           color="tomato"
-          style={{ marginTop: 100 }}
+          style={{ marginTop: 200 }}
         />
       )}
       <Image
         source={{ uri: itemUrl }}
-        style={loaded ? styles.fullImageStyle : { display: "none" }}
+        style={styles.fullImageStyle}
         onLoad={() => setLoaded(true)}
       />
     </View>
@@ -34,6 +34,6 @@ const styles = StyleSheet.create({
   fullImageStyle: {
     resizeMode: "contain",
     width: "95%",
-    height: "100%",
+    height: "95%",
   },
 });

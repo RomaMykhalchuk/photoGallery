@@ -1,16 +1,14 @@
 import React from "react";
-import { StyleSheet, View, Text, Image } from "react-native";
+import { StyleSheet, Text, Image } from "react-native";
 
 export const PhotoCard = ({ urls, alt_description, user }) => {
   return (
-    // <View style={{ flex: 1, margin: 1 }}>
     <>
       <Image source={{ uri: urls.small }} style={styles.image} />
       <Text style={styles.textDescription}>
         {alt_description} by {user.name}
       </Text>
-      </>
-    // </View>
+    </>
   );
 };
 
