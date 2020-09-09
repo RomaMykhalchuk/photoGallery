@@ -17,10 +17,14 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.home.name"
     },
+    "android": "com.home.name",
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "The gallery of free-usable beautiful pictures",
+    "githubUrl": "https://github.com/RomaMykhalchuk/photoGallery"
   }
 }
