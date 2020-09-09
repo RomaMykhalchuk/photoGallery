@@ -6,8 +6,9 @@ import { StyleSheet, FlatList } from "react-native";
 import { setPhotos } from "../store/reducers/photosReducer";
 import { PhotoCard } from "../components/PhotoCard";
 import { DetailedPhoto } from "../screens/DetailedPhoto";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
-export const PhotosMainScreen = () => {
+export const PhotosMainScreen = ({ navigation }) => {
   const photos = useSelector((state) => state.photos);
   const dispatch = useDispatch();
 
@@ -26,7 +27,15 @@ export const PhotosMainScreen = () => {
     <View style={styles.container}>
       <FlatList
         data={photos}
-        renderItem={({ item }) => <PhotoCard {...item} />}
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            onPress={() => navigation.navigate("DetailedPhoto", {
+              itemUrl: item.urls.full,
+            })}
+          >
+            <PhotoCard {...item} />
+          </TouchableOpacity>
+        )}
       ></FlatList>
     </View>
   );
