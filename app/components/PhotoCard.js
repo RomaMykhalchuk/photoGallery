@@ -1,25 +1,16 @@
 import React from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-  Image,
-  Button,
-  TouchableOpacity,
-} from "react-native";
-
-// import FastImage from "react-native-fast-image";
+import { StyleSheet, View, Text, Image } from "react-native";
 
 export const PhotoCard = ({ urls, alt_description, user }) => {
   return (
-    <View style={{ flex: 1, margin: 1 }}>
-      <Image source={{ uri: urls.raw }} style={styles.image} />
-      <View>
-        <Text style={styles.textDescription}> 
-          {alt_description} by {user.name}
-        </Text>
-      </View>
-    </View>
+    // <View style={{ flex: 1, margin: 1 }}>
+    <>
+      <Image source={{ uri: urls.small }} style={styles.image} />
+      <Text style={styles.textDescription}>
+        {alt_description} by {user.name}
+      </Text>
+      </>
+    // </View>
   );
 };
 
@@ -30,8 +21,8 @@ const styles = StyleSheet.create({
   },
   textDescription: {
     marginTop: 1,
-    fontWeight: 'bold',
-    fontStyle:'italic',
-    marginLeft: 10
-  },  
+    fontWeight: "bold",
+    fontStyle: "italic",
+    marginLeft: 10,
+  },
 });

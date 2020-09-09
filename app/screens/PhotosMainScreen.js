@@ -1,5 +1,12 @@
 import React, { useEffect } from "react";
-import { Text, View, Image, TouchableOpacity } from "react-native";
+import {
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  ActivityIndicator,
+  Alert,
+} from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { StyleSheet, FlatList } from "react-native";
 
@@ -8,6 +15,7 @@ import { PhotoCard } from "../components/PhotoCard";
 
 export const PhotosMainScreen = ({ navigation }) => {
   const photos = useSelector((state) => state.photos);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -16,7 +24,7 @@ export const PhotosMainScreen = ({ navigation }) => {
       fetch(`https://api.unsplash.com/photos/?client_id=${API_KEY}`)
         .then((response) => response.json())
         .then((photos) => dispatch(setPhotos(photos)))
-        .catch((err) => console.log(err));
+        .catch((err) => Alert.alert(`${err} occured`, "Please, try again"));
     };
     getData();
   }, []);
@@ -25,22 +33,20 @@ export const PhotosMainScreen = ({ navigation }) => {
     <View style={styles.container}>
       <FlatList
         data={photos}
-        numColumns={3}
+        numColumns={2}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <View style={{ width: "33%", flexDirection: "column", margin: 3 }}>
-            <TouchableOpacity
-              style={{ flex: 1 }}
-              key={item.id}
-              onPress={() =>
-                navigation.navigate("Full Image", {
-                  itemUrl: item.urls.full,
-                })
-              }
-            >
-              <PhotoCard {...item} />
-            </TouchableOpacity>
-          </View>
+          <TouchableOpacity
+            style={{ flex: 1, margin: 10 }}
+            key={item.id}
+            onPress={() => {
+              navigation.navigate("Full Image", {
+                itemUrl: item.urls.full,
+              });
+            }}
+          >
+            <PhotoCard {...item} />
+          </TouchableOpacity>
         )}
       ></FlatList>
     </View>
@@ -51,6 +57,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: 30,
-    paddingHorizontal: 5,
+    paddingHorizontal: 10,
   },
 });
