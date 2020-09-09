@@ -1,12 +1,10 @@
 import React, { useEffect } from "react";
-import { Text, View, Image } from "react-native";
+import { Text, View, Image, TouchableOpacity } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { StyleSheet, FlatList } from "react-native";
 
 import { setPhotos } from "../store/reducers/photosReducer";
 import { PhotoCard } from "../components/PhotoCard";
-import { DetailedPhoto } from "../screens/DetailedPhoto";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
 export const PhotosMainScreen = ({ navigation }) => {
   const photos = useSelector((state) => state.photos);
@@ -27,14 +25,22 @@ export const PhotosMainScreen = ({ navigation }) => {
     <View style={styles.container}>
       <FlatList
         data={photos}
+        numColumns={3}
+        keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <TouchableOpacity
-            onPress={() => navigation.navigate("DetailedPhoto", {
-              itemUrl: item.urls.full,
-            })}
-          >
-            <PhotoCard {...item} />
-          </TouchableOpacity>
+          <View style={{ width: "33%", flexDirection: "column", margin: 3 }}>
+            <TouchableOpacity
+              style={{ flex: 1 }}
+              key={item.id}
+              onPress={() =>
+                navigation.navigate("Full Image", {
+                  itemUrl: item.urls.full,
+                })
+              }
+            >
+              <PhotoCard {...item} />
+            </TouchableOpacity>
+          </View>
         )}
       ></FlatList>
     </View>
@@ -44,7 +50,7 @@ export const PhotosMainScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "column",
-    backgroundColor: "tomato",
+    marginTop: 30,
+    paddingHorizontal: 5,
   },
 });

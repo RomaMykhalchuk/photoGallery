@@ -8,11 +8,20 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-export const PhotoCard = ({ id, urls }) => {
+// import FastImage from "react-native-fast-image";
+
+export const PhotoCard = ({ urls, alt_description, user }) => {
   return (
     <View style={{ flex: 1, margin: 1 }}>
-      <Text>{id}</Text>
-      <Image source={urls.raw} style={{ width: 100, height: 100 }} />
-     </View>
+      <Image source={{ uri: urls.raw }} style={styles.image} />
+  <Text>{alt_description} by {user.name}</Text>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  image: {
+    width: "100%",
+    height: 150,
+  },
+});
