@@ -30,6 +30,7 @@ export default function App() {
                 backgroundColor: 'tomato'
               },
               headerTitleStyle: {
+                marginLeft: 70,
                 textTransform: 'uppercase',
                 fontWeight: 'bold',
                 color: '#8eedce'
